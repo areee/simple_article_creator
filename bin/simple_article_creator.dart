@@ -1,10 +1,9 @@
 import 'dart:math';
 
 void main(List<String> arguments) {
-  var max = 26;
   var random = Random();
-  var time = <String>['minutes', 'hours'];
-  var text = <String>[
+  var time = <String>['minutes', 'hours', 'days'];
+  var alphabets = <String>[
     'a',
     'b',
     'c',
@@ -30,22 +29,36 @@ void main(List<String> arguments) {
     'w',
     'x',
     'y',
-    'z'
+    'z',
+    'å',
+    'ä',
+    'ö'
   ];
 
-  for (var i = 0; i < max; i++) {
+  for (var i = 0; i < alphabets.length; i++) {
     print('new Article(\n'
-        'text: \'${returnString(text[i], 100)}\',\n'
+        'text: \'${quiteRandomString(alphabets[i], alphabets.length)}\',\n'
         'domain: \'github.com/areee\',\n'
         'by: \'areee\',\n'
-        'age: \'${random.nextInt(max)} ${time[random.nextInt(time.length)]}\',\n'
-        'score: ${random.nextInt(max * 100)},\n'
-        'commentsCount: ${random.nextInt(max * 10)},\n'
+        'age: \'${random.nextInt(alphabets.length)} ${time[random.nextInt(time.length)]}\',\n'
+        'score: ${random.nextInt(alphabets.length * 100)},\n'
+        'commentsCount: ${random.nextInt(alphabets.length * 10)},\n'
         '),');
   }
 }
 
-String returnString(String text, int amount) {
+String quiteRandomString(String alphabet, int amount) {
   var random = Random();
-  return text * random.nextInt(amount);
+  var randomAmount = random.nextInt(amount);
+  var returnedString = '';
+
+  for (var i = 0; i < randomAmount; i++) {
+    if (i % 5 == 0) {
+      returnedString += alphabet * randomAmount + ' ';
+    } else {
+      returnedString += alphabet * randomAmount;
+    }
+  }
+
+  return returnedString;
 }
